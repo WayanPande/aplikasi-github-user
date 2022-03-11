@@ -4,6 +4,8 @@
     <string name="followers">followers</string>
     <string name="centerDot">·</string>
     <string name="repository">%1$s repository</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Dicoding Indonesia</string>
 
     <string-array name="username">
         <item>JakeWharton</item>
