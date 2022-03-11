@@ -3,6 +3,7 @@ package com.example.aplikasigithubuser
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.aplikasigithubuser.databinding.ItemRowUserBinding
 
 class ListUserAdapter(private val listUser: ArrayList<User>) :
@@ -33,7 +34,9 @@ class ListUserAdapter(private val listUser: ArrayList<User>) :
         val (username, name, avatar) = listUser[position]
         holder.binding.tvUsername.text = username
         holder.binding.tvName.text = name
-        holder.binding.imgItemPhoto.setImageResource(avatar)
+        Glide.with(holder.binding.root)
+            .load(avatar)
+            .into(holder.binding.imgItemPhoto)
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
         }

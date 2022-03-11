@@ -2,6 +2,7 @@ package com.example.aplikasigithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.example.aplikasigithubuser.databinding.ActivityDetailPageBinding
 
 class DetailPage : AppCompatActivity() {
@@ -16,7 +17,9 @@ class DetailPage : AppCompatActivity() {
         val data = intent.getParcelableExtra<User>("DATA")
 
         binding.tvDetailName.text = data?.name
-        data?.avatar?.let { binding.ivProfile.setImageResource(it) }
+        Glide.with(this)
+            .load(data?.avatar)
+            .into(binding.ivProfile)
         binding.tvDetailUsername.text = data?.username
         binding.tvFollowers.text = data?.followers
         binding.tvFollowing.text = data?.following
