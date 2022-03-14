@@ -2,20 +2,29 @@ package com.example.aplikasigithubuser
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.aplikasigithubuser.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TAG = "USER_RESPONSE"
+        const val USER_DETAIL = "USER_DETAIL"
+    }
+
     private val list = ArrayList<User>()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var queryText: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,23 +33,21 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUser.setHasFixedSize(true)
 
-        list.addAll(listUsers)
-        showRecycleList()
-    }
+        val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
+        val searchView = binding.svSearch
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.option_menu, menu)
-
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
+        queryText = "dicoding"
+        findUser()
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.queryHint = resources.getString(R.string.search_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
+                if (query != null) {
+                    queryText = query
+                }
+                findUser()
                 searchView.clearFocus()
                 return true
             }
@@ -49,37 +56,7 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
-
-        return true
     }
-
-    private val listUsers: ArrayList<User>
-        @SuppressLint("Recycle")
-        get() {
-            val dataUsername = resources.getStringArray(R.array.username)
-            val dataName = resources.getStringArray(R.array.name)
-            val dataPhoto = resources.obtainTypedArray(R.array.avatar)
-            val dataLocation = resources.getStringArray(R.array.location)
-            val dataRepository = resources.getStringArray(R.array.repository)
-            val dataCompany = resources.getStringArray(R.array.company)
-            val dataFollowers = resources.getStringArray(R.array.followers)
-            val dataFollowing = resources.getStringArray(R.array.following)
-            val listUser = ArrayList<User>()
-            for (i in dataUsername.indices) {
-                val user = User(
-                    dataUsername[i],
-                    dataName[i],
-                    dataPhoto.getResourceId(i, -1),
-                    dataLocation[i],
-                    dataRepository[i],
-                    dataCompany[i],
-                    dataFollowers[i],
-                    dataFollowing[i]
-                )
-                listUser.add(user)
-            }
-            return listUser
-        }
 
     private fun showRecycleList() {
         binding.rvUser.layoutManager = LinearLayoutManager(this)
@@ -89,9 +66,49 @@ class MainActivity : AppCompatActivity() {
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
                 val intentToDetailPage = Intent(this@MainActivity, DetailPage::class.java)
-                intentToDetailPage.putExtra("DATA", data)
+                intentToDetailPage.putExtra(USER_DETAIL, data)
                 startActivity(intentToDetailPage)
             }
         })
+    }
+
+    private fun findUser(){
+        val client = ApiConfig.getApiService().getUser(queryText)
+        client.enqueue(object : Callback<UserResponse>{
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    if (responseBody != null){
+                        setUserData(responseBody.items)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.e(TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    private fun setUserData(userData: List<ItemsItem?>?){
+        val userList = ArrayList<User>()
+        if (userData != null) {
+            for (data in userData){
+                val user = User(
+                    data?.login!!,
+                    data.login,
+                    data.avatarUrl!!,
+                    "test",
+                    "test",
+                    "test",
+                    "test",
+                    "test"
+                )
+                userList.add(user)
+            }
+        }
+        list.clear()
+        list.addAll(userList)
+        showRecycleList()
     }
 }

@@ -14,7 +14,7 @@ class DetailPage : AppCompatActivity() {
         binding = ActivityDetailPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val data = intent.getParcelableExtra<User>("DATA")
+        val data = intent.getParcelableExtra<User>(MainActivity.USER_DETAIL)
 
         binding.tvDetailName.text = data?.name
         Glide.with(this)
