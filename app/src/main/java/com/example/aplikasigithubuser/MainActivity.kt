@@ -1,12 +1,11 @@
 package com.example.aplikasigithubuser
 
-import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -65,26 +64,32 @@ class MainActivity : AppCompatActivity() {
 
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
-                val intentToDetailPage = Intent(this@MainActivity, DetailPage::class.java)
-                intentToDetailPage.putExtra(USER_DETAIL, data)
+                val intentToDetailPage = Intent(this@MainActivity, DetailActivity::class.java)
+                intentToDetailPage.putExtra(USER_DETAIL, data.username)
                 startActivity(intentToDetailPage)
             }
         })
     }
 
     private fun findUser(){
+        showLoading(true)
         val client = ApiConfig.getApiService().getUser(queryText)
         client.enqueue(object : Callback<UserResponse>{
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful){
                     val responseBody = response.body()
                     if (responseBody != null){
+                        Log.d("MAIN_ACTIVITY_OK",
+                            responseBody.toString()
+                        )
                         setUserData(responseBody.items)
                     }
                 }
+                showLoading(false)
             }
 
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                showLoading(false)
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
@@ -110,5 +115,13 @@ class MainActivity : AppCompatActivity() {
         list.clear()
         list.addAll(userList)
         showRecycleList()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }

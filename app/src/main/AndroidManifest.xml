@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiGithubUser">
         <activity
-            android:name=".DetailPage"
+            android:name=".DetailActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
