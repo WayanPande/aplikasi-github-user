@@ -1,6 +1,10 @@
 package com.example.aplikasigithubuser
 
 import android.os.Bundle
+<<<<<<< HEAD
+=======
+import android.view.View
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -52,11 +56,19 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
+<<<<<<< HEAD
         mainViewModel.userDetailDetail.observe(this) { userDetailData ->
             setUiText(userDetailData)
         }
 
         mainViewModel.isLoading.observe(this) {
+=======
+        mainViewModel.userDetailDetail.observe(this){ userDetailData ->
+            setUiText(userDetailData)
+        }
+
+        mainViewModel.isLoading.observe(this){
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
             showLoading(it)
         }
     }

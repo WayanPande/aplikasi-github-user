@@ -47,7 +47,10 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
+<<<<<<< HEAD
                     Log.d(MainActivity.TAG, responseBody.toString())
+=======
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
                     if (responseBody != null) {
                         setUserData(responseBody.items, SEARCHED_LIST)
                     }

@@ -4,7 +4,10 @@ import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+<<<<<<< HEAD
 import android.widget.Toast
+=======
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -54,9 +57,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         mainViewModel.searchedUserDetailList.observe(this) { userList ->
+<<<<<<< HEAD
             if (userList.size == 0) {
                 Toast.makeText(this, "User Tidak Ditemukan!", Toast.LENGTH_LONG).show()
             }
+=======
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
             showRecycleList(userList)
         }
 

@@ -12,6 +12,11 @@ class LoadingDialog(myActivity: Activity) {
     private val activity: Activity = myActivity
     private lateinit var dialog: AlertDialog
 
+<<<<<<< HEAD
+=======
+
+    @SuppressLint("InflateParams")
+>>>>>>> e0a4c8b... refactoring all API request using viewModel and fixing some bugs
     fun startLoadingDialog(){
         val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater: LayoutInflater = activity.layoutInflater
