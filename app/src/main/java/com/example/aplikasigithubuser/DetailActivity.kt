@@ -2,7 +2,6 @@ package com.example.aplikasigithubuser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
@@ -11,9 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.aplikasigithubuser.databinding.ActivityDetailPageBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailActivity : AppCompatActivity() {
 
@@ -26,6 +22,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailPageBinding
+    private val loadingDialog = LoadingDialog(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +30,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getStringExtra(MainActivity.USER_DETAIL)
-
-        if (username != null) {
-            findUserDetail(username)
-        }
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
@@ -51,48 +44,22 @@ class DetailActivity : AppCompatActivity() {
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
         if (username != null) {
             mainViewModel.apply {
+                findUserDetail(username)
                 getFollowersOrFollowingData(username, MainViewModel.FOLLOWERS)
                 getFollowersOrFollowingData(username, MainViewModel.FOLLOWING)
             }
         }
+
+        mainViewModel.userDetailDetail.observe(this){ userDetailData ->
+            setUiText(userDetailData)
+        }
+
+        mainViewModel.isLoading.observe(this){
+            showLoading(it)
+        }
     }
 
-    private fun findUserDetail(username: String) {
-        showLoading(true)
-        val client = ApiConfig.getApiService().getUserDetail(username)
-        client.enqueue(object : Callback<DetailUserResponse> {
-            override fun onResponse(
-                call: Call<DetailUserResponse>,
-                response: Response<DetailUserResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        val userData = User(
-                            responseBody.login!!,
-                            responseBody.name ?: responseBody.login,
-                            responseBody.avatarUrl!!,
-                            responseBody.location ?: "-",
-                            responseBody.publicRepos!!.toString(),
-                            responseBody.company ?: "-",
-                            responseBody.followers!!.toString(),
-                            responseBody.following!!.toString()
-                        )
-                        setUiText(userData)
-                    }
-                    showLoading(false)
-                }
-            }
-
-            override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                showLoading(false)
-            }
-        })
-
-    }
-
-
-    private fun setUiText(data: User) {
+    private fun setUiText(data: UserDetail) {
 
         binding.apply {
             tvDetailName.text = data.name
@@ -110,9 +77,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
+            loadingDialog.startLoadingDialog()
         } else {
-            binding.progressBar.visibility = View.GONE
+            loadingDialog.dismissDialog()
         }
     }
 }

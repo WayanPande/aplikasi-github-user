@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aplikasigithubuser.databinding.FragmentFollowersBinding
 import com.example.aplikasigithubuser.databinding.FragmentFollowingBinding
 
 class FollowingFragment : Fragment() {
@@ -21,7 +20,7 @@ class FollowingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFollowingBinding.inflate(inflater, container, false)
 
 
@@ -34,7 +33,7 @@ class FollowingFragment : Fragment() {
     }
 
 
-    private fun setFollowingList(followerList: ArrayList<User>){
+    private fun setFollowingList(followerList: ArrayList<UserList>){
         binding.rvFollowing.setHasFixedSize(true)
         binding.rvFollowing.layoutManager = LinearLayoutManager(activity)
         val listUserAdapter = ListFollowerAndFollowingAdapter(followerList)

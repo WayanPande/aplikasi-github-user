@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.aplikasigithubuser.databinding.ItemRowUserBinding
 
-class ListFollowerAndFollowingAdapter(private val listUser: ArrayList<User>) :
+class ListFollowerAndFollowingAdapter(private val listUserDetail: ArrayList<UserList>) :
     RecyclerView.Adapter<ListFollowerAndFollowingAdapter.ListViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,15 +21,14 @@ class ListFollowerAndFollowingAdapter(private val listUser: ArrayList<User>) :
         holder: ListViewHolder,
         position: Int
     ) {
-        val (username, name, avatar) = listUser[position]
+        val (username, avatar) = listUserDetail[position]
         holder.binding.tvUsername.text = username
-        holder.binding.tvName.text = name
         Glide.with(holder.binding.root)
             .load(avatar)
             .into(holder.binding.imgItemPhoto)
     }
 
-    override fun getItemCount(): Int = listUser.size
+    override fun getItemCount(): Int = listUserDetail.size
 
     class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 

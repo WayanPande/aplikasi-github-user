@@ -7,6 +7,11 @@ import android.os.Handler
 import android.os.Looper
 
 class SplashScreen : AppCompatActivity() {
+
+    companion object {
+        private const val DELAY = 3000
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -17,6 +22,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, DELAY.toLong())
     }
 }

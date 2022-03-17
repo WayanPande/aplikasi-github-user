@@ -1,190 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_700"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="12dp"
+    android:paddingTop="18dp"
     tools:context=".DetailActivity">
 
-    <LinearLayout
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:contentDescription="@string/image_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_DetailName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_700"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="16dp">
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Text" />
 
+    <TextView
+        android:id="@+id/tv_DetailUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        tools:text="nama" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_DetailName"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_followers"
+            style="@style/DetailText.Bold"
+            android:layout_marginStart="5sp"
+            android:gravity="center_vertical"
+            android:drawablePadding="5dp"
+            app:drawableStartCompat="@drawable/ic_baseline_supervisor_account_24"
+            tools:text="5" />
+
+        <TextView
+            style="@style/DetailText"
+            android:layout_marginStart="5dp"
+            android:text="@string/followers" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            tools:text="Text"
+            android:layout_marginHorizontal="5sp"
+            android:text="@string/centerDot"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_DetailUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            tools:text="nama"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:id="@+id/tv_following"
+            style="@style/DetailText.Bold"
+            tools:text="5" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_baseline_supervisor_account_24" />
-
-            <TextView
-                android:id="@+id/tv_followers"
-                style="@style/DetailText.Bold"
-                android:layout_marginStart="5sp"
-                tools:text="5" />
-
-            <TextView
-                style="@style/DetailText"
-                android:layout_marginStart="5dp"
-                android:text="@string/followers" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5sp"
-                android:text="@string/centerDot"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_following"
-                style="@style/DetailText.Bold"
-                tools:text="5" />
-
-            <TextView
-                style="@style/DetailText"
-                android:layout_marginStart="5dp"
-                android:text="@string/following" />
-
-        </LinearLayout>
-
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_baseline_apartment_24" />
-
-                <TextView
-                    android:id="@+id/tv_company"
-                    style="@style/DetailText.Bold"
-                    android:layout_marginStart="3dp"
-                    tools:text="Universitas Udayana" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_baseline_place_24" />
-
-                <TextView
-                    android:id="@+id/tv_location"
-                    style="@style/DetailText.Bold"
-                    android:layout_marginStart="3dp"
-                    tools:text="Universitas Udayana" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_baseline_collections_bookmark_24" />
-
-                <TextView
-                    android:id="@+id/tv_repository"
-                    style="@style/DetailText.Bold"
-                    android:layout_marginStart="3dp"
-                    android:text="@string/repository" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tab_layout_background"
-            android:paddingHorizontal="2dp"
-            android:paddingVertical="1.5dp"
-            app:tabGravity="fill"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorGravity="stretch"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/black_500" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <TextView
+            style="@style/DetailText"
+            android:layout_marginStart="5dp"
+            android:text="@string/following" />
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <TableLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="100dp"
-        tools:visibility="visible" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_company"
+                style="@style/DetailText.Bold"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_apartment_24"
+                tools:text="Universitas Udayana" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/DetailText.Bold"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_place_24"
+                tools:text="Universitas Udayana" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+
+            <TextView
+                android:id="@+id/tv_repository"
+                style="@style/DetailText.Bold"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:text="@string/repository"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_collections_bookmark_24" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tab_layout_background"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="1.5dp"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/tab_indicator"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorGravity="stretch"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/black_500" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
+
+
+</LinearLayout>
