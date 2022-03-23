@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,6 +54,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         mainViewModel.searchedUserDetailList.observe(this) { userList ->
+            if (userList.size == 0) {
+                Toast.makeText(this, "User Tidak Ditemukan!", Toast.LENGTH_LONG).show()
+            }
             showRecycleList(userList)
         }
 

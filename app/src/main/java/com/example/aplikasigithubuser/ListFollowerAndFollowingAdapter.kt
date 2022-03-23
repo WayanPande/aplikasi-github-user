@@ -30,6 +30,6 @@ class ListFollowerAndFollowingAdapter(private val listUserDetail: ArrayList<User
 
     override fun getItemCount(): Int = listUserDetail.size
 
-    class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
 }

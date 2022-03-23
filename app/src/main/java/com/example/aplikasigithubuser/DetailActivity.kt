@@ -1,9 +1,8 @@
 package com.example.aplikasigithubuser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
@@ -41,7 +40,10 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.elevation = 0f
 
-        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[MainViewModel::class.java]
         if (username != null) {
             mainViewModel.apply {
                 findUserDetail(username)
@@ -50,11 +52,11 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        mainViewModel.userDetailDetail.observe(this){ userDetailData ->
+        mainViewModel.userDetailDetail.observe(this) { userDetailData ->
             setUiText(userDetailData)
         }
 
-        mainViewModel.isLoading.observe(this){
+        mainViewModel.isLoading.observe(this) {
             showLoading(it)
         }
     }

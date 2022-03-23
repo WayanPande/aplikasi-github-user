@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FollowersFragment">
+    tools:context=".FollowersAndFollowingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_followers"
+        android:id="@+id/rv_followers_and_following"
         android:layout_width="0dp"
         android:layout_height="0dp"
         tools:listitem="@layout/item_row_user"

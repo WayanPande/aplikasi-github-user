@@ -47,6 +47,7 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
+                    Log.d(MainActivity.TAG, responseBody.toString())
                     if (responseBody != null) {
                         setUserData(responseBody.items, SEARCHED_LIST)
                     }
