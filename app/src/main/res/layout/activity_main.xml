@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_700"
-    tools:context=".MainActivity">
+    android:background="?attr/colorPrimary"
+    tools:context=".ui.MainActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/svSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:iconifiedByDefault="false"
-        android:backgroundTint="@color/white"
-        app:queryBackground="@android:color/transparent"
         android:background="@drawable/searchview_background"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"

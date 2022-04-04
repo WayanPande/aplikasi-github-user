@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_500"
-    tools:context=".SplashScreen">
+    android:id="@+id/layoutWrapper"
+    tools:context=".ui.SplashScreen">
 
     <ImageView
         android:layout_width="120dp"
@@ -14,7 +14,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_airline_seat_recline_extra_24" />
+        app:srcCompat="@drawable/ic_baseline_airline_seat_recline_extra_24"
+        android:contentDescription="@string/app_icon" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
