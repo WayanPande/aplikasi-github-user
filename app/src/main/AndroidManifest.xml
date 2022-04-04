@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aplikasigithubuser">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,13 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplikasiGithubUser">
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.UserFavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

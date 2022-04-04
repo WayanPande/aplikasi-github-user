@@ -5,12 +5,14 @@
     <string name="centerDot">·</string>
     <string name="repository">%1$s repository</string>
     <string name="search">Search</string>
-    <string name="search_hint">Dicoding Indonesia</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_following">Following</string>
     <string name="tab_followers">Followers</string>
     <string name="loading">Loading...</string>
     <string name="image_description">Profile picture for user</string>
+    <string name="setfavourite">setFavourite</string>
+    <string name="app_icon">App_icon</string>
+    <string name="change_app_theme">Change app theme</string>
+    <string name="favoritemenu">favoriteMenu</string>
 
 </resources>

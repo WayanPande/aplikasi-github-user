@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layoutWrapper"
-    tools:context=".ui.SplashScreen">
+    tools:context=".ui.FollowersAndFollowingFragment">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_followers_following"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_row_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_airline_seat_recline_extra_24"
-        android:contentDescription="@string/app_icon" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:background="?attr/colorPrimary"
+        android:paddingTop="18dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:contentDescription="@string/image_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_DetailName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Text" />
+
+        <TextView
+            android:id="@+id/tv_DetailUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            tools:text="nama" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_followers"
+                style="@style/DetailText.Bold"
+                android:layout_marginStart="5sp"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_baseline_supervisor_account_24"
+                tools:text="5" />
+
+            <TextView
+                style="@style/DetailText"
+                android:layout_marginStart="5dp"
+                android:text="@string/followers" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5sp"
+                android:text="@string/centerDot"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_following"
+                style="@style/DetailText.Bold"
+                tools:text="5" />
+
+            <TextView
+                style="@style/DetailText"
+                android:layout_marginStart="5dp"
+                android:text="@string/following" />
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_company"
+                    style="@style/DetailText.Bold"
+                    android:layout_marginStart="3dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_baseline_apartment_24"
+                    tools:text="Universitas Udayana" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    style="@style/DetailText.Bold"
+                    android:layout_marginStart="3dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_baseline_place_24"
+                    tools:text="Universitas Udayana" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
+
+
+                <TextView
+                    android:id="@+id/tv_repository"
+                    style="@style/DetailText.Bold"
+                    android:layout_marginStart="3dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/repository"
+                    app:drawableStartCompat="@drawable/ic_baseline_collections_bookmark_24" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tab_layout_background"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="2dp"
+            app:tabGravity="fill"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="?attr/colorOnPrimary"
+            app:tabTextColor="?attr/colorPrimary" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:foregroundGravity="bottom"
+        app:fabSize="normal"
+        android:tint="@color/white"
+        app:layout_anchor="@id/ll_wrapper"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        android:contentDescription="@string/setfavourite" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
